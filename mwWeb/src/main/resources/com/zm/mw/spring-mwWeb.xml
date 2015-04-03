@@ -23,17 +23,16 @@
 		<property name="suffix" value=".jsp"></property>
 	</bean>
 	
-	<bean id="propertyConfigurer" class="com.zm.zmcore.config.PropertyPlaceholderConfigurer"
+	<bean id="propertyConfigurer" class="com.zm.common.config.PropertyPlaceholderConfigurer"
 		lazy-init="false">
 		<property name="locations">
 			<list>
-				<value>classpath*:com/zm/zmcore/zmCore.properties</value>
-				<value>classpath*:com/zm/mbweb/mbWeb.properties</value>
-				<value>classpath*:com/zm/mbweb/mbWeb.dev.properties</value>
-				<value>classpath*:com/zm/mbweb/mbWeb.test.properties</value>
-				<value>classpath*:com/zm/mbweb/mbWeb.pre.properties</value>
-				<value>classpath*:com/zm/mbweb/mbWeb.prod.properties</value>
-
+				<value>classpath*:com/zm/common/zmCommon.properties</value>
+				<value>classpath*:com/zm/mw/mwWeb.properties</value>
+				<value>classpath*:com/zm/mw/mwWeb.dev.properties</value>
+				<value>classpath*:com/zm/mw/mwWeb.test.properties</value>
+				<value>classpath*:com/zm/mw/mwWeb.pre.properties</value>
+				<value>classpath*:com/zm/mw/mwWeb.prod.properties</value>
 			</list>
 		</property>
 		<property name="ignoreResourceNotFound" value="true"></property>
@@ -43,8 +42,8 @@
 	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
         <property name="basenames">
             <list>
-                <value>com/zm/mbweb/exceptions</value>
-                <value>com/zm/mbweb/messages</value>                
+                <value>com/zm/mw/exceptions</value>
+                <value>com/zm/mw/messages</value>                
             </list>
         </property>        
     </bean>
