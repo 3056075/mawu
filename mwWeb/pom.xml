@@ -23,4 +23,11 @@
 			</plugin>
 		</plugins>
 	</build>
+  	<dependencies>
+  		<dependency>
+  			<groupId>com.zm</groupId>
+  			<artifactId>zmUser</artifactId>
+  			<version>0.1.0</version>
+  		</dependency>
+  	</dependencies>
 </project>

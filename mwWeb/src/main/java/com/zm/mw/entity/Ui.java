@@ -1,5 +1,115 @@
 package com.zm.mw.entity;
 
-public class Ui {
+import java.util.Date;
 
+import javax.persistence.Cacheable;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
+import com.zm.user.entity.User;
+
+@Entity
+@Table(name = "ui")
+@Cacheable
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+public class Ui {
+	protected Integer uiId;
+
+	protected String productName;
+	protected String pageName;
+	protected String keywords;
+	protected Integer system;
+	protected Short status;
+	protected Short source;
+	protected String imgUrl;
+	protected Date createTime;
+	
+	protected UiCategory uiCategory;
+	protected User user;
+	
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	public Integer getUiId() {
+		return uiId;
+	}
+	public void setUiId(Integer uiId) {
+		this.uiId = uiId;
+	}
+	public String getProductName() {
+		return productName;
+	}
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+	public String getPageName() {
+		return pageName;
+	}
+	public void setPageName(String pageName) {
+		this.pageName = pageName;
+	}
+	public String getKeywords() {
+		return keywords;
+	}
+	public void setKeywords(String keywords) {
+		this.keywords = keywords;
+	}
+	public Integer getSystem() {
+		return system;
+	}
+	public void setSystem(Integer system) {
+		this.system = system;
+	}
+	public Short getStatus() {
+		return status;
+	}
+	public void setStatus(Short status) {
+		this.status = status;
+	}
+	public Short getSource() {
+		return source;
+	}
+	public void setSource(Short source) {
+		this.source = source;
+	}
+	public String getImgUrl() {
+		return imgUrl;
+	}
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
+	}
+	public Date getCreateTime() {
+		return createTime;
+	}
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "uiCategoryId")
+	public UiCategory getUiCategory() {
+		return uiCategory;
+	}
+	public void setUiCategory(UiCategory uiCategory) {
+		this.uiCategory = uiCategory;
+	}
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "userId")
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
+	
 }
