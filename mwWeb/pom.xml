@@ -6,4 +6,21 @@
   	<artifactId>mwParent</artifactId>
   	<version>0.1.0</version>
   </parent>
+  	<build>
+		<finalName>mwWeb</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<version>${jetty.version}</version>
+				<configuration>
+					<scanIntervalSeconds>10</scanIntervalSeconds>									
+					<webApp>
+						<contextPath>/</contextPath>
+						<defaultsDescriptor>src/test/resources/webdefault.xml</defaultsDescriptor>
+					</webApp>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>
