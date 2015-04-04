@@ -34,10 +34,10 @@ public class UiCategoryDaoImpl extends BaseDaoImpl<UiCategory> implements UiCate
 		hql.append(" where 1=1");
 		if(isNext){
 			hql.append(" and u.rank > :rank");
-			hql.append(" order by s.rank asc");
+			hql.append(" order by u.rank asc");
 		}else{
 			hql.append(" and u.rank < :rank");
-			hql.append(" order by s.rank desc");
+			hql.append(" order by u.rank desc");
 		}		
 		Map<String, Object> params = new HashMap<String,Object>();
 		params.put("rank", rank);

@@ -34,6 +34,7 @@ public class UiCategoryServiceImpl implements UiCategoryService {
 			} else {
 				rank = rank + 1;
 			}
+			uiCategory.setRank(rank);
 		}
 		uiCategoryDao.saveOrUpdate(uiCategory);
 	}

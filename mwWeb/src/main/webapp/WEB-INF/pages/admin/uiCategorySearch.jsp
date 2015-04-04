@@ -17,30 +17,62 @@
 		</div>
 		<div class="row">
 			<div class="span12 doc-content">
-				<table cellspacing="0" class="table table-condensed">
+				<table class="table table-condensed">
 					<thead>
 						<tr>
 							<th>排序</th>
 							<th>分类名称</th>
-							<th>图片数量</th>							
+							<th>图片数量</th>
 							<th>操作</th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="uiCategory" items="${uiCategory}">
+						<c:forEach var="uiCategory" items="${uiCategorys}" varStatus="stat">
 							<tr>
-								<td>1</td>
+								<td>
+									<c:if test="${!stat.first}"><span class="up">▲</span></c:if>
+									<c:if test="${stat.first}">&nbsp;&nbsp;&nbsp;&nbsp;</c:if>
+									&nbsp;&nbsp;
+									<c:if test="${!stat.last}"><span class="down">▼</span></c:if>
+								</td>
 								<td>${uiCategory.name}</td>
 								<td>${fn:length(uiCategory.uis)}</td>
-								<td>
-									<button class="button button-primary">编辑</button>
-									<button class="button button-danger">删除</button>
-								</td>
-							</tr>		
-						</c:forEach>				
+								<td><a>编辑</a> 
+								    <a href="javascript:void(0);" class="delete" title="${uiCategory.uiCategoryId}">删除</a></td>
+							</tr>
+						</c:forEach>
 					</tbody>
 				</table>
 			</div>
 		</div>
+	</div>
+
+<script type="text/javascript">
+$(".delete").click(function(){
+	var r=confirm("确认删除此分类？");
+	var uiCategoryId = $(this).attr("title");
+	if(r){
+		$.get('${_ctxPath}/admin/uiCategoryDelete.htm',{'uiCategoryId':uiCategoryId},function(data){
+			if(data.code=='true'){
+				window.location.href=window.location.href;
+			}else if(data.code=='false'){
+				alert(data.message);
+			}
+		});
+	}
+});
+
+$(".up").click(function(){exchange($(this).parent().parent().find(".delete").attr("title"),'false')});
+$(".down").click(function(){exchange($(this).parent().parent().find(".delete").attr("title"),'true')});
+var exchange=function exchange(uiCategoryId,isnext){
+	$.get('${_ctxPath}/admin/uiCategoryExchange.htm',{'uiCategoryId':uiCategoryId,'isNext':isnext},function(data){
+		if(data.code=='true'){
+			window.location.href=window.location.href;
+		}else if(data.code=='false'){
+			alert(data.message);
+		}
+	});
+}
+</script>	
 </body>
 </html>

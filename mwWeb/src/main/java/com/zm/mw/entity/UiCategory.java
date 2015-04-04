@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.Cacheable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -54,7 +55,7 @@ public class UiCategory {
 	public void setRank(Integer rank) {
 		this.rank = rank;
 	}
-
+	@Column(updatable = false)
 	public Date getUpdateTime() {
 		return updateTime;
 	}
@@ -62,7 +63,7 @@ public class UiCategory {
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
 	}
-
+	@Column(updatable = false)
 	public Date getCreateTime() {
 		return createTime;
 	}

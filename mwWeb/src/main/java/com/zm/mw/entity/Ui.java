@@ -3,6 +3,7 @@ package com.zm.mw.entity;
 import java.util.Date;
 
 import javax.persistence.Cacheable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -87,6 +88,7 @@ public class Ui {
 	public void setImgUrl(String imgUrl) {
 		this.imgUrl = imgUrl;
 	}
+	@Column(updatable = false)
 	public Date getCreateTime() {
 		return createTime;
 	}

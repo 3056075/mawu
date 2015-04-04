@@ -9,6 +9,7 @@
 </head>
 <body>
 	<div class="wrap">
+		<%@include file="../inc/message.jsp"%>
 		<form class="form-horizontal well" id="editForm"
 			action="${_ctxPath}/admin/uiCategoryEditSave.htm" method="post">
 
