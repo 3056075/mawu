@@ -6,5 +6,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/admin")
 public class SearchWordsController extends BaseAdminController {
+	@RequestMapping("searchWordsSearch")
+	public String search() {
+		return "admin/searchWordsSearch";
+	}
 
+	
 }

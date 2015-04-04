@@ -6,5 +6,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/admin")
 public class UiCategoryController extends BaseAdminController {
+	@RequestMapping("uiCategorySearch")
+	public String search() {
+		return "admin/uiCategorySearch";
+	}
 
+	@RequestMapping("uiCategoryAdd")
+	public String add() {
+		return "admin/uiCategoryAdd";
+	}
 }
