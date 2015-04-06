@@ -21,7 +21,7 @@ public class UiCategoryDaoImpl extends BaseDaoImpl<UiCategory> implements UiCate
 	@Override
 	public Integer findMaxRank() {
 		List<Object> result = commonfind("select max(u.rank) from UiCategory u");
-		if(null==result || result.isEmpty()){
+		if(null==result || result.isEmpty()||null==result.get(0)){
 			return null;
 		}else{
 			return new Integer(result.get(0).toString()) ;
