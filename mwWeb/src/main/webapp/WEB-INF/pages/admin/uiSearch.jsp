@@ -113,7 +113,7 @@ request.setAttribute("sources", Ui.SOURCES);
 								<td>${ui.pageName}</td>
 								<td>${ui.keywords}</td>
 								<td><spring:message code="Ui.system.${ui.system}"/></td>
-								<td>111</td>
+								<td>${fn:length(ui.favorites)}</td>
 								<td><spring:message code="Ui.status.${ui.status}"/></td>
 								<td><spring:message code="Ui.source.${ui.source}"/></td>
 								<td>编辑</td>
