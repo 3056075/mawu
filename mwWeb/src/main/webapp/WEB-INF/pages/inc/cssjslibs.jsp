@@ -8,6 +8,8 @@
 <script src="${_ctxPath}/bui/js/jquery-1.11.2.min.js"></script>
 <script src="${_ctxPath}/bui/js/bui-min.js"></script>
 <script src="${_ctxPath}/bui/js/config.js"></script>
+
+<script src="${_jsPath}/uploadify/jquery.uploadify.min.js"></script>
 <script type="text/javascript">
 var _ctxPath = "${_ctxPath}";
 </script>

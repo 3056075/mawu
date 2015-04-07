@@ -107,11 +107,12 @@ request.setAttribute("sources", Ui.SOURCES);
 				</div>
 			</div>		
 			<div class="row">
-				<div class="control-group span16">
+				<div class="control-group">
 					<label class="control-label">图片：</label>
-					<div class="controls">
-						 	
-						 <div id="uploader"></div>					
+					<div class="controls" style="height: auto;">						 	
+						<img id="imgUrlImg" alt="" src="${_ctxPath}/${ui.imgUrl}"/>
+						<input type="hidden" name="imgUrl" id="imgUrl" value="${ui.imgUrl}"/>
+						<input type="file" id="imgUrl_upload" name="file" />	
 					</div>
 				</div>
 			</div>														
@@ -130,18 +131,22 @@ request.setAttribute("sources", Ui.SOURCES);
 
 </body>
 <script type="text/javascript">
-	BUI.use('bui/uploader', function(Uploader) {
-		var uploader = new Uploader.Uploader({
-			type:'flash',
-			render : '#uploader',
-			url : '${_ctxPath}/upload.htm'
-		}).render();
-		
-	});
 	BUI.use('form', function(Form) {
 		new Form.Form({
 			srcNode : '#editForm'
 		}).render();
 	});
+	
+	$('#imgUrl_upload').uploadify({
+	    'swf'    		: '${_ctxPath}/img/uploadify.swf',
+	    'uploader'      : '${_ctxPath}/upload.htm', 
+	    'fileObjName'	: 'file',
+	    'fileTypeExts'  : '*.gif; *.jpg; *.png; *.jpeg',
+	    'onUploadSuccess'  : function(file, data, response) {
+	    	var result = jQuery.parseJSON(data);
+	    	$('#imgUrl').val(result.message);
+	        $('#imgUrlImg').attr('src','${_ctxPath}/'+result.message);
+	      }
+	  });
 </script>
 </html>
