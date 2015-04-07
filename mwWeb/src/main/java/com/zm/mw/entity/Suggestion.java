@@ -23,8 +23,8 @@ import com.zm.user.entity.User;
 @Cacheable
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Suggestion {
-	public static final Short READED_NO = 0;
-	public static final Short READED_YES = 1;
+	public static final Short READED_NO = 10;
+	public static final Short READED_YES = 20;
 	public static final Short[] READEDS = new Short[] { READED_NO, READED_YES};
 
 	protected Integer suggestionId;

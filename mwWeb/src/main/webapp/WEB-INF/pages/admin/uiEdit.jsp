@@ -24,6 +24,7 @@ request.setAttribute("sources", Ui.SOURCES);
 		<%@include file="../inc/message.jsp"%>
 		<form class="form-horizontal well" id="editForm"
 			action="${_ctxPath}/admin/uiEditSave.htm" method="post">
+			<input type="hidden" name="uiId" value="${ui.uiId}"/>
 			<div class="row">
 				<div class="control-group span16">
 					<label class="control-label">产品名称：</label>
@@ -36,10 +37,10 @@ request.setAttribute("sources", Ui.SOURCES);
 				<div class="control-group span16">
 					<label class="control-label">功能分类：</label>
 					<div class="controls">
-						<select name="uiCategory">
+						<select name="uiCategory.uiCategoryId">
 							<c:forEach var="uiCategory" items="${uiCategorys}">
 								<option value="${uiCategory.uiCategoryId}"
-									<c:if test="${uiCategory.uiCategoryId==ui.uiCategoryId}">selected="selected"</c:if>								
+									<c:if test="${uiCategory.uiCategoryId==ui.uiCategory.uiCategoryId}">selected="selected"</c:if>								
 								>${uiCategory.name}</option>
 							</c:forEach>
 						</select>				

@@ -21,8 +21,8 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Cacheable
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class SearchWords {
-	public static final Short TYPE_WORD = 1;
-	public static final Short TYPE_UICATEGORY = 2;
+	public static final Short TYPE_WORD = 10;
+	public static final Short TYPE_UICATEGORY = 20;
 	public static final Short[] TYPES = new Short[] { TYPE_WORD,
 			TYPE_UICATEGORY };
 

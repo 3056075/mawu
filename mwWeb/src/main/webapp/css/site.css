@@ -1,6 +1,7 @@
 .wrap{padding: 10px;}
 
-
+.paginationSize {float: right;padding: 20px 0;}
+.paginationSize select{width: 150px;}
 /*
 Uploadify
 Copyright (c) 2012 Reactive Apps, Ronnie Garcia

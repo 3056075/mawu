@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.zm.common.constant.StringConstant;
 import com.zm.common.exception.ZmException;
 import com.zm.common.pagination.BasePagination;
+import com.zm.common.utils.StringUtils;
 import com.zm.mw.dao.UiDao;
 import com.zm.mw.entity.Ui;
 import com.zm.mw.service.UiService;
@@ -21,9 +23,17 @@ public class UiServiceImpl implements UiService {
 	private UserService userService;
 	
 	@Override
-	public List<Ui> searchUi(BasePagination<Ui> page) throws ZmException {
-		
-		return null;
+	public void searchUi(BasePagination<Ui> page) throws ZmException {
+		if (StringUtils.isBlank(page.getSort())) {
+			page.setSort("createTime");
+			page.setDir(StringConstant.DESC);
+		}
+		if (page.isNeedSetTotal()) {
+			Long count = uiDao.searchUiCount(page);
+			page.setTotal(count.intValue());
+		}
+		List<Ui> result = uiDao.searchUi(page);
+		page.setResult(result);
 	}
 
 	@Override

@@ -25,13 +25,13 @@ import com.zm.user.entity.User;
 @Cacheable
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Ui {
-	public static final Integer SYSTEM_IOS = 10;
-	public static final Integer SYSTEM_ANDROID = 20;
-	public static final Integer SYSTEM_H5 = 30;
-	public static final Integer[] SYSTEMS = new Integer[] { SYSTEM_IOS, SYSTEM_ANDROID,SYSTEM_H5};
+	public static final Short SYSTEM_IOS = 10;
+	public static final Short SYSTEM_ANDROID = 20;
+	public static final Short SYSTEM_H5 = 30;
+	public static final Short[] SYSTEMS = new Short[] { SYSTEM_IOS, SYSTEM_ANDROID,SYSTEM_H5};
 	
-	public static final Short STATUS_SHOW = 1;
-	public static final Short STATUS_HIDDEN = 0;
+	public static final Short STATUS_SHOW = 20;
+	public static final Short STATUS_HIDDEN = 10;
 	public static final Short[] STATUSS = new Short[]{STATUS_SHOW,STATUS_HIDDEN};
 	
 	public static final Short SOURCE_ADMIN = 10;
@@ -43,7 +43,7 @@ public class Ui {
 	protected String productName;
 	protected String pageName;
 	protected String keywords;
-	protected Integer system;
+	protected Short system;
 	protected Short status;
 	protected Short source;
 	protected String imgUrl;
@@ -80,10 +80,10 @@ public class Ui {
 	public void setKeywords(String keywords) {
 		this.keywords = keywords;
 	}
-	public Integer getSystem() {
+	public Short getSystem() {
 		return system;
 	}
-	public void setSystem(Integer system) {
+	public void setSystem(Short system) {
 		this.system = system;
 	}
 	public Short getStatus() {

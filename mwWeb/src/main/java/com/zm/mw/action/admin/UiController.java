@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.zm.common.exception.ZmException;
+import com.zm.common.pagination.BasePagination;
 import com.zm.mw.entity.Ui;
 import com.zm.mw.service.UiService;
 
@@ -16,7 +17,9 @@ public class UiController extends BaseAdminController {
 	private UiService uiService;
 	
 	@RequestMapping("uiSearch")
-	public String search() {
+	public String search(BasePagination<Ui> page,Model model) throws ZmException {
+		uiService.searchUi(page);
+		model.addAttribute("page", page);
 		return "admin/uiSearch";
 	}
 
