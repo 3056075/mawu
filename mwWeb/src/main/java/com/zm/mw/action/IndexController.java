@@ -17,4 +17,14 @@ public class IndexController extends BaseController {
 	public String login() {
 		return "login";
 	}
+	
+	@RequestMapping("recommend")
+	public String recommend() {
+		return "recommend";
+	}
+	
+	@RequestMapping("wxgroup")
+	public String wxgroup() {
+		return "wxgroup";
+	}
 }
