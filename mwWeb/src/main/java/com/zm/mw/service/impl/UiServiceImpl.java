@@ -9,7 +9,9 @@ import com.zm.common.constant.StringConstant;
 import com.zm.common.exception.ZmException;
 import com.zm.common.pagination.BasePagination;
 import com.zm.common.utils.StringUtils;
+import com.zm.mw.dao.FavoriteDao;
 import com.zm.mw.dao.UiDao;
+import com.zm.mw.entity.Favorite;
 import com.zm.mw.entity.Ui;
 import com.zm.mw.service.UiService;
 import com.zm.user.entity.Role;
@@ -19,6 +21,8 @@ import com.zm.user.service.UserService;
 public class UiServiceImpl implements UiService {
 	@Autowired
 	private UiDao uiDao;
+	@Autowired
+	private FavoriteDao favoriteDao;
 	@Autowired
 	private UserService userService;
 	
@@ -60,8 +64,16 @@ public class UiServiceImpl implements UiService {
 
 	@Override
 	public void delete(Integer uiId) throws ZmException {
-		
-		
+		List<Favorite> favorites = favoriteDao.findByUiId(uiId);
+		if(null!= favorites&&favorites.size()>0){
+			for(Favorite favorite:favorites){
+				favoriteDao.delete(favorite);
+			}
+		}
+		Ui ui = uiDao.get(uiId);
+		if(null!= ui){
+			uiDao.delete(ui);
+		}
 	}
 
 }

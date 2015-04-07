@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.zm.common.action.CommonJson;
 import com.zm.common.exception.ZmException;
 import com.zm.common.pagination.BasePagination;
 import com.zm.mw.entity.Ui;
@@ -39,5 +41,18 @@ public class UiController extends BaseAdminController {
 		}
 		model.addAttribute("message", "保存成功！");
 		return "admin/uiEdit";
+	}
+	
+	@RequestMapping("uiDelete")
+	@ResponseBody
+	public CommonJson delete(Integer uiId) {		
+		CommonJson result = new CommonJson();
+		try {
+			uiService.delete(uiId);
+		} catch (ZmException e) {
+			result.setCode("false");
+			result.setMessage(e.getMessage());;
+		}
+		return result;
 	}
 }

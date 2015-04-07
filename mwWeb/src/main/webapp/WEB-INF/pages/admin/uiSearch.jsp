@@ -16,6 +16,18 @@ request.setAttribute("systems", Ui.SYSTEMS);
 request.setAttribute("statuss", Ui.STATUSS);
 request.setAttribute("sources", Ui.SOURCES);
 %>
+
+<style type="text/css">
+.custom-dialog {
+	border: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+.custom-dialog .bui-stdmod-header, .custom-dialog .bui-stdmod-footer {
+	display: none;
+}
+</style>
 </head>
 <body>
 	<div class="wrap">
@@ -108,7 +120,7 @@ request.setAttribute("sources", Ui.SOURCES);
 						<c:forEach var="ui" items="${page.result}" varStatus="stat">
 							<tr>
 								<td>${ui.user.username}</td>
-								<td>${ui.productName}</td>
+								<td><a href="javascript:void(0);" class="img" title="${ui.imgUrl}">${ui.productName}</a></td>
 								<td>${ui.uiCategory.name}</td>
 								<td>${ui.pageName}</td>
 								<td>${ui.keywords}</td>
@@ -116,7 +128,8 @@ request.setAttribute("sources", Ui.SOURCES);
 								<td>${fn:length(ui.favorites)}</td>
 								<td><spring:message code="Ui.status.${ui.status}"/></td>
 								<td><spring:message code="Ui.source.${ui.source}"/></td>
-								<td>编辑</td>
+								<td><a href="javascript:void(0);" class="edit" title="${ui.uiId}">编辑</a>　
+									<a href="javascript:void(0);" class="delete" title="${ui.uiId}">删除</a></td>
 								
 							</tr>
 						</c:forEach>
@@ -125,12 +138,53 @@ request.setAttribute("sources", Ui.SOURCES);
 			<mw:commPageSize page="${page}"></mw:commPageSize>
 			<mw:commPage page="${page}"></mw:commPage>
 		</div>
-
 	</div>
-
-
 </body>
 <script type="text/javascript">
+$(".delete").click(function(){
+	var r=confirm("确认删除此内容？");
+	var uiId = $(this).attr("title");
+	if(r){
+		$.get('${_ctxPath}/admin/uiDelete.htm',{'uiId':uiId},function(data){
+			if(data.code=='true'){
+				window.location.href=window.location.href;
+			}else if(data.code=='false'){
+				alert(data.message);
+			}
+		});
+	}
+});
+
+
+$(".edit").click(function(){	
+	var uiId = $(this).attr("title");
+	var config = {
+			title : '编辑内容',
+			id:'uiEdit',
+			href : '${_ctxPath}/admin/uiEdit.htm?uiId='+uiId,
+		};
+	 var moduleId = window.parent.pageUtil._getCurrentModuleId();
+	 var module = window.parent.pageUtil._getModule(moduleId);
+	 module.tab.addTab(config,true);
 	
-</script>
+});
+
+$(".img").click(function(){	
+	var imgUrl = $(this).attr("title");
+	 BUI.use('bui/overlay',function(Overlay){
+		 var dialog = new Overlay.Dialog({
+			 align: {
+				//node : '#t1',//对齐的节点
+				points: ['tl','tl'], //对齐参考：http://dxq613.github.io/#positon
+				offset: [10,10] //偏移
+				},
+					elCls : 'custom-dialog',
+		 			bodyContent:'<img src="/'+_ctxPath+imgUrl+'" />',
+					 buttons : []
+		 });
+		 dialog.show();		
+	 });
+});
+
+</script>	
 </html>

@@ -103,7 +103,7 @@ request.setAttribute("sources", Ui.SOURCES);
 				<div class="control-group span16">
 					<label class="control-label">来源：</label>
 					<div class="controls">
-						<spring:message code="Ui.source.${source}"/>			
+						<spring:message code="Ui.source.${ui.source}"/>			
 					</div>
 				</div>
 			</div>		
@@ -122,7 +122,6 @@ request.setAttribute("sources", Ui.SOURCES);
 					<label class="control-label">　</label>
 					<div class="controls">
 						<input type="submit" value="确定" class="button button-primary"/>
-						<input type="button" value="删除" class="button button-primary"/>
 					</div>
 				</div>
 			</div>
