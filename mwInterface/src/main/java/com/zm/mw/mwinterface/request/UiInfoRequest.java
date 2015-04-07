@@ -1,9 +1,9 @@
 package com.zm.mw.mwinterface.request;
 
 import com.zm.common.face.BaseRequest;
-import com.zm.mw.mwinterface.response.UiInfoResponse;
+import com.zm.mw.mwinterface.response.UiSearchResponse;
 
-public class UiSearchRequest extends BaseRequest<UiInfoResponse> {
+public class UiInfoRequest extends BaseRequest<UiSearchResponse> {
 	@Override
 	public String faceCode() {
 		// TODO Auto-generated method stub
