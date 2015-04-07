@@ -28,45 +28,46 @@
     </ul>
    </div>
   <script>
+    var pageUtil ;
     BUI.use('common/main',function(){
       var config = [{
           id:'menu', 
-          homePage : 'code',
+          homePage : 'uiCategory',
           menu:[{
               text:'分类管理',
               items:[
-                {id:'code',text:'分类查看',href:'${_ctxPath}/admin/uiCategorySearch.htm'},
-                {id:'main-menu',text:'添加分类',href:'${_ctxPath}/admin/uiCategoryEdit.htm'}
+                {id:'uiCategory',text:'分类查看',href:'${_ctxPath}/admin/uiCategorySearch.htm'},
+                {id:'uiCategoryEdit',text:'添加分类',href:'${_ctxPath}/admin/uiCategoryEdit.htm'}
               ]
             },{
               text:'用户管理',
               items:[
-                {id:'operation',text:'用户查看',href:'${_ctxPath}/admin/userSearch.htm'}
+                {id:'user',text:'用户查看',href:'${_ctxPath}/admin/userSearch.htm'}
               ]
             },{
               text:'内容管理',
               items:[
-                {id:'resorc',text:'内容查看',href:'${_ctxPath}/admin/uiSearch.htm'},
-                {id:'loaer',text:'添加内容',href:'${_ctxPath}/admin/uiAdd.htm'}  
+                {id:'ui',text:'内容查看',href:'${_ctxPath}/admin/uiSearch.htm'},
+                {id:'uiEdit',text:'添加内容',href:'${_ctxPath}/admin/uiEdit.htm'}  
               ]
             },{
                 text:'搜索管理',
                 items:[
-                  {id:'resource',text:'搜索查看',href:'${_ctxPath}/admin/searchWordsSearch.htm'}
+                  {id:'searchWords',text:'搜索查看',href:'${_ctxPath}/admin/searchWordsSearch.htm'}
                 ]
             },{
                 text:'意见管理',
                 items:[
-                  {id:'esource',text:'意见查看',href:'${_ctxPath}/admin/suggestionSearch.htm'}
+                  {id:'suggestion',text:'意见查看',href:'${_ctxPath}/admin/suggestionSearch.htm'}
                 ]
             },{
                 text:'密码管理',
                 items:[
-                  {id:'esource',text:'修改密码',href:'${_ctxPath}/admin/userPassword.htm'}
+                  {id:'password',text:'修改密码',href:'${_ctxPath}/admin/userPassword.htm'}
                 ]
             }]
           }];
-      new PageUtil.MainPage({
+      pageUtil= new PageUtil.MainPage({
         modulesConfig : config
       });
     });

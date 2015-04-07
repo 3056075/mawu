@@ -1,7 +1,7 @@
 (function ($) {
 
   var baseUrl = '',         //网站的根目录地址，发布到线上时使用
-    jsBase = '/assets/js';
+    jsBase = '/bui/js';
   
   function isRelative(url){
     if(!/:/.test(url)){
@@ -43,7 +43,7 @@
 
   BUI.config({
     alias : {
-      'common' : baseUrl + jsBase + '/common',
+      'common' : baseUrl + jsBase + '',
       'module' : baseUrl + jsBase + '/module'
     }/*,
     map : [ //调试环境下使用'*.js'，如果发布上线前，使用*-min.js去掉下面的map

@@ -1,9 +1,57 @@
 package com.zm.mw.service.impl;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.zm.common.exception.ZmException;
+import com.zm.common.pagination.BasePagination;
+import com.zm.mw.dao.UiDao;
+import com.zm.mw.entity.Ui;
 import com.zm.mw.service.UiService;
+import com.zm.user.entity.Role;
+import com.zm.user.entity.User;
+import com.zm.user.service.UserService;
 @Service
 public class UiServiceImpl implements UiService {
+	@Autowired
+	private UiDao uiDao;
+	@Autowired
+	private UserService userService;
+	
+	@Override
+	public List<Ui> searchUi(BasePagination<Ui> page) throws ZmException {
+		
+		return null;
+	}
+
+	@Override
+	public Ui findByUiId(Integer uiId) throws ZmException {
+		return uiDao.get(uiId);
+	}
+
+	@Override
+	public void saveOrUpdate(Ui ui) throws ZmException {
+		if(null==ui.getUser()||null==ui.getSource()){
+			User currentUser = userService.getCurrentUser();
+			ui.setUser(currentUser);
+			boolean isAdmin = false;
+			for(Role role:currentUser.getRoles()){
+				if(Role.ROLEID_ADMIN.equals(role.getRoleId())){
+					isAdmin = true;
+					break;
+				}
+			}
+			ui.setSource(isAdmin?Ui.SOURCE_ADMIN:Ui.SOURCE_USER);
+		}
+		uiDao.saveOrUpdate(ui);
+	}
+
+	@Override
+	public void delete(Integer uiId) throws ZmException {
+		
+		
+	}
 
 }

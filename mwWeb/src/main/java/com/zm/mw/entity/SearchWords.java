@@ -3,6 +3,7 @@ package com.zm.mw.entity;
 import java.util.Date;
 
 import javax.persistence.Cacheable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -20,18 +21,22 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Cacheable
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class SearchWords {
+	public static final Short TYPE_WORD = 1;
+	public static final Short TYPE_UICATEGORY = 2;
+	public static final Short[] TYPES = new Short[] { TYPE_WORD,
+			TYPE_UICATEGORY };
+
 	protected Integer searchWordsId;
 	protected String word;
 	protected Integer times;
-	protected Short type;	
+	protected Short type;
 	protected Date updateTime;
 	protected Date createTime;
-	
+
 	protected UiCategory uiCategory;
 
-	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	public Integer getSearchWordsId() {
 		return searchWordsId;
 	}
@@ -64,6 +69,7 @@ public class SearchWords {
 		this.type = type;
 	}
 
+	@Column(updatable = false)
 	public Date getUpdateTime() {
 		return updateTime;
 	}
@@ -72,6 +78,7 @@ public class SearchWords {
 		this.updateTime = updateTime;
 	}
 
+	@Column(updatable = false)
 	public Date getCreateTime() {
 		return createTime;
 	}
@@ -79,8 +86,9 @@ public class SearchWords {
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
+
 	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "uiCategoryId")
+	@JoinColumn(name = "uiCategoryId")
 	public UiCategory getUiCategory() {
 		return uiCategory;
 	}
@@ -88,6 +96,5 @@ public class SearchWords {
 	public void setUiCategory(UiCategory uiCategory) {
 		this.uiCategory = uiCategory;
 	}
-	
-	
+
 }

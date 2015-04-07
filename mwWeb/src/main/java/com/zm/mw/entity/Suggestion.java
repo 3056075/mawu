@@ -3,10 +3,14 @@ package com.zm.mw.entity;
 import java.util.Date;
 
 import javax.persistence.Cacheable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
@@ -19,19 +23,21 @@ import com.zm.user.entity.User;
 @Cacheable
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Suggestion {
-	
-	protected Integer suggestionId;	
+	public static final Short READED_NO = 0;
+	public static final Short READED_YES = 1;
+	public static final Short[] READEDS = new Short[] { READED_NO, READED_YES};
+
+	protected Integer suggestionId;
 	protected String contents;
 	protected String imgUrls;
 	protected Short readed;
 	protected Date updateTime;
 	protected Date createTime;
-	
+
 	protected User user;
 
-	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	public Integer getSuggestionId() {
 		return suggestionId;
 	}
@@ -63,7 +69,7 @@ public class Suggestion {
 	public void setReaded(Short readed) {
 		this.readed = readed;
 	}
-
+	@Column(updatable = false)
 	public Date getUpdateTime() {
 		return updateTime;
 	}
@@ -71,7 +77,7 @@ public class Suggestion {
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
 	}
-
+	@Column(updatable = false)
 	public Date getCreateTime() {
 		return createTime;
 	}
@@ -79,7 +85,9 @@ public class Suggestion {
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
-
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "userId")
 	public User getUser() {
 		return user;
 	}
@@ -87,7 +95,5 @@ public class Suggestion {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	
-	
 
 }

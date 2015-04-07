@@ -3,6 +3,7 @@ package com.zm.mw.entity;
 import java.util.Date;
 
 import javax.persistence.Cacheable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -35,6 +36,7 @@ public class Favorite {
 	public void setFavoriteId(Integer favoriteId) {
 		this.favoriteId = favoriteId;
 	}
+	@Column(updatable = false)
 	public Date getCreateTime() {
 		return createTime;
 	}

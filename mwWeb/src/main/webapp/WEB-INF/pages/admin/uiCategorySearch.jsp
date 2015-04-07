@@ -37,7 +37,7 @@
 								</td>
 								<td>${uiCategory.name}</td>
 								<td>${fn:length(uiCategory.uis)}</td>
-								<td><a>编辑</a> 
+								<td><a href="javascript:void(0);" class="edit" title="${uiCategory.uiCategoryId}">编辑</a> 
 								    <a href="javascript:void(0);" class="delete" title="${uiCategory.uiCategoryId}">删除</a></td>
 							</tr>
 						</c:forEach>
@@ -73,6 +73,21 @@ var exchange=function exchange(uiCategoryId,isnext){
 		}
 	});
 }
+
+$(".edit").click(function(){	
+	var uiCategoryId = $(this).attr("title");
+	var config = {
+			title : '编辑分类',
+			id:'uiCategoryEdit',
+			href : '${_ctxPath}/admin/uiCategoryEdit.htm?uiCategoryId='+uiCategoryId,
+		};
+	 var moduleId = window.parent.pageUtil._getCurrentModuleId();
+	 var module = window.parent.pageUtil._getModule(moduleId);
+	 module.tab.addTab(config,true);
+	
+	
+});
+
 </script>	
 </body>
 </html>

@@ -1,6 +1,7 @@
 package com.zm.mw.entity;
 
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.Cacheable;
 import javax.persistence.Column;
@@ -11,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
@@ -23,6 +25,19 @@ import com.zm.user.entity.User;
 @Cacheable
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Ui {
+	public static final Integer SYSTEM_IOS = 10;
+	public static final Integer SYSTEM_ANDROID = 20;
+	public static final Integer SYSTEM_H5 = 30;
+	public static final Integer[] SYSTEMS = new Integer[] { SYSTEM_IOS, SYSTEM_ANDROID,SYSTEM_H5};
+	
+	public static final Short STATUS_SHOW = 1;
+	public static final Short STATUS_HIDDEN = 0;
+	public static final Short[] STATUSS = new Short[]{STATUS_SHOW,STATUS_HIDDEN};
+	
+	public static final Short SOURCE_ADMIN = 10;
+	public static final Short SOURCE_USER = 20;
+	public static final Short[] SOURCES = new Short[]{SOURCE_ADMIN,SOURCE_USER};
+	
 	protected Integer uiId;
 
 	protected String productName;
@@ -37,7 +52,8 @@ public class Ui {
 	protected UiCategory uiCategory;
 	protected User user;
 	
-	
+	protected Set<Favorite> favorites;
+	//
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	public Integer getUiId() {
@@ -111,6 +127,14 @@ public class Ui {
 	}
 	public void setUser(User user) {
 		this.user = user;
+	}
+	
+	@OneToMany(mappedBy = "ui",fetch = FetchType.LAZY)
+	public Set<Favorite> getFavorites() {
+		return favorites;
+	}
+	public void setFavorites(Set<Favorite> favorites) {
+		this.favorites = favorites;
 	}
 	
 	

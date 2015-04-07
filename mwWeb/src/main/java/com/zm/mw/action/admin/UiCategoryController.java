@@ -21,7 +21,7 @@ public class UiCategoryController extends BaseAdminController {
 	
 	@RequestMapping("uiCategorySearch")
 	public String search(Model model) throws ZmException {
-		List<UiCategory> uiCategorys = uiCategoryService.findAll();
+		List<UiCategory> uiCategorys = uiCategoryService.findAllByRank();
 		model.addAttribute("uiCategorys", uiCategorys);
 		return "admin/uiCategorySearch";
 	}

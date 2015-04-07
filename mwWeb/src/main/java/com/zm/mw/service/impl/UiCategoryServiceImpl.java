@@ -16,7 +16,7 @@ public class UiCategoryServiceImpl implements UiCategoryService {
 	private UiCategoryDao uiCategoryDao;
 
 	@Override
-	public List<UiCategory> findAll() throws ZmException {
+	public List<UiCategory> findAllByRank() throws ZmException {
 		return uiCategoryDao.findAllByRank();
 	}
 	@Override

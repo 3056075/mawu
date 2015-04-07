@@ -12,7 +12,8 @@
 		<%@include file="../inc/message.jsp"%>
 		<form class="form-horizontal well" id="editForm"
 			action="${_ctxPath}/admin/uiCategoryEditSave.htm" method="post">
-
+			<input type="hidden" name="uiCategoryId" value="${uiCategory.uiCategoryId}"/>
+			<input type="hidden" name="rank" value="${uiCategory.rank}"/>
 			<div class="row">
 				<div class="control-group span16">
 					<label class="control-label">分类名称：</label>
