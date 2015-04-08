@@ -3,12 +3,12 @@ package com.zm.mw.mwinterface.request;
 import com.zm.common.face.BaseRequest;
 import com.zm.mw.mwinterface.response.UiCategoryResponse;
 
-public class UiCategoryRequest extends BaseRequest<UiCategoryResponse>{
+public class UiCategoryRequest extends BaseRequest<UiCategoryResponse> {
+	public static final String CODE = "F5001";
 
 	@Override
-	public String faceCode() {
-		// TODO Auto-generated method stub
-		return null;
+	public String faceCode() {		
+		return CODE;
 	}
 
 }

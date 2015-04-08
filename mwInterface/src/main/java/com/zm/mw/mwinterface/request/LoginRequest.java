@@ -4,9 +4,9 @@ import com.zm.common.face.BaseRequest;
 import com.zm.mw.mwinterface.response.LoginResponse;
 
 public class LoginRequest extends BaseRequest<LoginResponse> {
+	public static final String CODE = "F6001";
 	@Override
-	public String faceCode() {
-		// TODO Auto-generated method stub
-		return null;
+	public String faceCode() {		
+		return CODE;
 	}
 }
