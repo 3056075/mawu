@@ -12,10 +12,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
+import com.zm.common.constant.StringConstant;
+import com.zm.common.utils.StringUtils;
 import com.zm.user.entity.User;
 
 @Entity
@@ -25,7 +28,7 @@ import com.zm.user.entity.User;
 public class Suggestion {
 	public static final Short READED_NO = 10;
 	public static final Short READED_YES = 20;
-	public static final Short[] READEDS = new Short[] { READED_NO, READED_YES};
+	public static final Short[] READEDS = new Short[] { READED_NO, READED_YES };
 
 	protected Integer suggestionId;
 	protected String contents;
@@ -69,6 +72,7 @@ public class Suggestion {
 	public void setReaded(Short readed) {
 		this.readed = readed;
 	}
+
 	@Column(updatable = false)
 	public Date getUpdateTime() {
 		return updateTime;
@@ -77,6 +81,7 @@ public class Suggestion {
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
 	}
+
 	@Column(updatable = false)
 	public Date getCreateTime() {
 		return createTime;
@@ -85,9 +90,9 @@ public class Suggestion {
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "userId")
+	@JoinColumn(name = "userId")
 	public User getUser() {
 		return user;
 	}
@@ -96,4 +101,11 @@ public class Suggestion {
 		this.user = user;
 	}
 
+	@Transient
+	public String[] getImgUrlsArr() {
+		if (StringUtils.isNotBlank(imgUrls)) {
+			return StringUtils.split(imgUrls, StringConstant.COMMA);
+		}
+		return null;
+	}
 }
