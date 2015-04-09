@@ -9,4 +9,11 @@ public class FavoriteAddRequest extends BaseRequest<FavoriteAddResponse> {
 	public String faceCode() {	
 		return CODE;
 	}
+	private Integer uiId;//收藏的ui的系统id
+	public Integer getUiId() {
+		return uiId;
+	}
+	public void setUiId(Integer uiId) {
+		this.uiId = uiId;
+	}
 }

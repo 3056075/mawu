@@ -48,7 +48,7 @@ public class Ui {
 	protected Short source;
 	protected String imgUrl;
 	protected Date createTime;
-	
+	protected Integer favoriteCount;
 	protected UiCategory uiCategory;
 	protected User user;
 	
@@ -110,6 +110,12 @@ public class Ui {
 	}
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
+	}
+	public Integer getFavoriteCount() {
+		return favoriteCount;
+	}
+	public void setFavoriteCount(Integer favoriteCount) {
+		this.favoriteCount = favoriteCount;
 	}
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "uiCategoryId")
