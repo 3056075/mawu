@@ -4,7 +4,7 @@ import com.zm.common.face.BaseRequest;
 import com.zm.mw.mwinterface.response.UiCategoryResponse;
 
 public class UiCategoryRequest extends BaseRequest<UiCategoryResponse> {
-	public static final String CODE = "F5001";
+	public static final String CODE = "F_5001";
 
 	@Override
 	public String faceCode() {		

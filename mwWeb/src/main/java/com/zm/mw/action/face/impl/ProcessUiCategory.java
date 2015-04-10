@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,8 +18,13 @@ import com.zm.mw.mwinterface.request.UiCategoryRequest;
 import com.zm.mw.mwinterface.response.UiCategoryResponse;
 import com.zm.mw.mwinterface.response.UiCategoryResponse.IUiCategory;
 import com.zm.mw.service.UiCategoryService;
+import com.zm.user.service.UserService;
 @Service(value=UiCategoryRequest.CODE)
 public class ProcessUiCategory extends IProcessBase {
+	protected static Logger logger = LoggerFactory
+			.getLogger(ProcessUiCategory.class);
+	@Autowired
+	private UserService userService;
 	@Autowired
 	private UiCategoryService uiCategoryService;
 	public BaseResponse process(String data, HttpServletRequest request)
