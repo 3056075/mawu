@@ -14,7 +14,7 @@ import com.zm.mw.mwinterface.response.UiAddResponse;
 public class ProcessUiAdd extends IProcessBase {
 
 	@Override
-	public BaseResponse process(String data, HttpServletRequest request)
+	public BaseResponse useProcess(String data, HttpServletRequest request)
 			throws ZmException {
 		UiAddRequest uiAddRequest = convertData(data, UiAddRequest.class);
 		UiAddResponse response = new UiAddResponse();

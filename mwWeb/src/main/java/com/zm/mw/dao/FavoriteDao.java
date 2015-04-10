@@ -10,4 +10,6 @@ public interface FavoriteDao extends BaseDao<Favorite>{
 	public Long findCountByUiId(Integer uiId);
 	public List<Favorite> findByUserId(Integer userId);
 	public Long findCountByUserId(Integer userId);
+	
+	public List<Favorite> findByUserIdUiId(Integer userId,Integer uiId);
 }

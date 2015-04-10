@@ -18,7 +18,7 @@ public class FavoriteTest extends TestCase {
 	@Test
 	public void testAdd() throws IOException {
 		FavoriteAddRequest request = new FavoriteAddRequest();
-		request.setUiId(2);
+		request.setUiId(4);
 		FavoriteAddResponse response = new HttpExcute().execute(request);
 		System.out.println(new Gson().toJson(response));
 	}

@@ -6,7 +6,7 @@ import com.zm.mw.mwinterface.response.FavoriteAddResponse;
 public class FavoriteAddRequest extends BaseRequest<FavoriteAddResponse> {
 	public static final String CODE = "F_6021";
 	@Override
-	public String faceCode() {	
+	public String faceCode() {
 		return CODE;
 	}
 	private Integer uiId;//收藏的ui的系统id

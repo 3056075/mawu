@@ -13,7 +13,7 @@ import com.zm.mw.mwinterface.response.FavoriteSearchResponse;
 public class ProcessFavoriteSearch extends IProcessBase {
 
 	@Override
-	public BaseResponse process(String data, HttpServletRequest request)
+	public BaseResponse useProcess(String data, HttpServletRequest request)
 			throws ZmException {
 		FavoriteSearchRequest favoriteSearchRequest = convertData(data, FavoriteSearchRequest.class);
 		FavoriteSearchResponse response = new FavoriteSearchResponse();

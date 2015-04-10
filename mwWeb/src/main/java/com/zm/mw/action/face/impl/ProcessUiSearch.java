@@ -13,7 +13,7 @@ import com.zm.mw.mwinterface.response.UiSearchResponse;
 public class ProcessUiSearch extends IProcessBase {
 
 	@Override
-	public BaseResponse process(String data, HttpServletRequest request)
+	public BaseResponse useProcess(String data, HttpServletRequest request)
 			throws ZmException {
 		UiSearchRequest uiSearchRequest = convertData(data, UiSearchRequest.class);
 		UiSearchResponse response = new UiSearchResponse();

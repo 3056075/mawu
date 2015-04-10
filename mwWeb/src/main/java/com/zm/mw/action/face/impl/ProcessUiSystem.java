@@ -13,7 +13,7 @@ import com.zm.mw.mwinterface.response.UiSystemResponse;
 public class ProcessUiSystem extends IProcessBase {
 
 	@Override
-	public BaseResponse process(String data, HttpServletRequest request)
+	public BaseResponse useProcess(String data, HttpServletRequest request)
 			throws ZmException {
 		UiSystemRequest uiSystemRequest = convertData(data, UiSystemRequest.class);
 		UiSystemResponse response = new UiSystemResponse();

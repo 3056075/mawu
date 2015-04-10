@@ -13,7 +13,7 @@ import com.zm.mw.mwinterface.response.SuggestionResponse;
 public class ProcessSuggestion extends IProcessBase {
 
 	@Override
-	public BaseResponse process(String data, HttpServletRequest request)
+	public BaseResponse useProcess(String data, HttpServletRequest request)
 			throws ZmException {
 		SuggestionRequest suggestionRequest = convertData(data, SuggestionRequest.class);
 		SuggestionResponse response = new SuggestionResponse();

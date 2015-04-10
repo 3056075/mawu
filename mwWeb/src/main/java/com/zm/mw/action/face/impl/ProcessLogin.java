@@ -27,7 +27,7 @@ public class ProcessLogin extends IProcessBase {
 	@Autowired
 	private AuthenticationManager autheticationManager;
 	
-	public BaseResponse process(String data, HttpServletRequest request)
+	public BaseResponse useProcess(String data, HttpServletRequest request)
 			throws ZmException {
 		LoginRequest loginRequest = convertData(data, LoginRequest.class);
 		if (loginRequest == null || loginRequest.getType() == null

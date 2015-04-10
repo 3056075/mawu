@@ -27,7 +27,7 @@ public class ProcessUiCategory extends IProcessBase {
 	private UserService userService;
 	@Autowired
 	private UiCategoryService uiCategoryService;
-	public BaseResponse process(String data, HttpServletRequest request)
+	public BaseResponse useProcess(String data, HttpServletRequest request)
 			throws ZmException {
 		convertData(data,
 				UiCategoryRequest.class);
