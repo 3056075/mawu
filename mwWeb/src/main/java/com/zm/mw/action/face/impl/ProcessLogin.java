@@ -21,7 +21,7 @@ import com.zm.user.entity.User;
 import com.zm.user.service.OauthService;
 
 @Service(value = LoginRequest.CODE)
-public class ProcessLogin extends IProcessBase {
+public class ProcessLogin extends BaseProcess {
 	@Autowired
 	private OauthService oauthService;
 	@Autowired

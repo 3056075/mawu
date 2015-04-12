@@ -59,23 +59,29 @@ request.setAttribute("readeds", Suggestion.READEDS);
 			</div>
 		</form>
 		<hr/>
-		<div class="span12 doc-content">
+		<div class="span16 doc-content">
 				<table class="table table-condensed">
 					<thead>
 						<tr>
 							<th>反馈账号</th>
 							<th>问题和意见</th>
 							<th>是否已读</th>
+							<th>反馈时间</th>
 							<th>操作</th>							
 						</tr>
 					</thead>
 					<tbody>
 						<c:forEach var="s" items="${page.result}" varStatus="stat">
 							<tr>
-								<td>${s.user}</td>
+								<td>
+									<c:forEach var="oauth" items="${s.user.oauths}">
+										<span style="color:red"><spring:message code="Oauth.type.${oauth.type}"/></span>
+									</c:forEach>
+								${s.user.name}</td>
 								<td>${s.contents}</td>
 								<td><spring:message code="Suggestion.readed.${s.readed}"/></td>
-								<td>查看</td>
+								<td><fmt:formatDate value="${s.createTime}" pattern="yyyy-MM-dd"/> </td>
+								<td><a href="javascript:void(0);" class="img" title="${s.imgUrls}" id="${s.suggestionId}">查看</a></td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -91,6 +97,37 @@ request.setAttribute("readeds", Suggestion.READEDS);
 				showTime : true,
 				autoRender : true
 			});
+		});
+		
+		
+		$(".img").click(function(){	
+			var suggestionId = $(this).attr("id");
+			$.get('${_ctxPath}/admin/suggestionRead.htm?suggestionId='+suggestionId,{},function(data){
+				
+			});			
+			//
+			var imgUrls = $(this).attr("title");
+			var bodyContent="问题和意见:"+ $(this).parent().prev().prev().prev().text() +"<br/>";
+			bodyContent=bodyContent+"图片:";
+			var imgUrlsArr = imgUrls.split(',');
+			for (var i=0;i<imgUrlsArr.length;i++)
+			{
+				bodyContent = bodyContent+ '<img src="/'+ _ctxPath + imgUrlsArr[i] + '" /> ';
+			}
+			
+			 BUI.use('bui/overlay',function(Overlay){
+				 var dialog = new Overlay.Dialog({
+					 align: {
+						//node : '#t1',//对齐的节点
+						points: ['tl','tl'], //对齐参考：http://dxq613.github.io/#positon
+						offset: [10,10] //偏移
+						},
+							elCls : 'custom-dialog',
+				 			bodyContent:bodyContent,
+							buttons : []
+				 });
+				 dialog.show();		
+			 });
 		});
 	</script>
 </body>

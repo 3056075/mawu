@@ -26,7 +26,7 @@ public class FavoriteTest extends TestCase {
 	@Test
 	public void testCancel() throws IOException {
 		FavoriteCancelRequest request = new FavoriteCancelRequest();
-		request.setUiId(2);
+		request.setUiId(4);
 		FavoriteCancelResponse response = new HttpExcute().execute(request);
 		System.out.println(new Gson().toJson(response));
 	}

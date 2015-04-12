@@ -7,6 +7,8 @@ import java.util.Map;
 import org.springframework.stereotype.Repository;
 
 import com.zm.common.dao.impl.BaseDaoImpl;
+import com.zm.common.pagination.BasePagination;
+import com.zm.common.utils.StringUtils;
 import com.zm.mw.dao.FavoriteDao;
 import com.zm.mw.entity.Favorite;
 
@@ -45,6 +47,36 @@ public class FavoriteDaoImpl extends BaseDaoImpl<Favorite> implements
 		params.put("userId", userId);
 		params.put("uiId", uiId);
 		return this.find(hql, params);
+	}
+
+	@Override
+	public Long searchFavoriteCount(BasePagination<Favorite> page) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		StringBuilder hql = new StringBuilder("select count(*)");
+		searchFavoriteBase(hql, params, page);
+		return this.count(hql.toString(), params);
+	}
+
+	@Override
+	public List<Favorite> searchFavorite(BasePagination<Favorite> page) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		StringBuilder hql = new StringBuilder("select f");
+		searchFavoriteBase(hql, params, page);
+		this.appendSort(hql, "f", page);
+		return this.find(hql.toString(), params, page.getCurrentPage(),
+				page.getLimit());
+	}
+
+	private void searchFavoriteBase(StringBuilder hql,
+			Map<String, Object> params, BasePagination<Favorite> page) {
+		hql.append(" from Favorite f");
+		hql.append(" where 1=1");
+		String userId = null;
+		if (StringUtils.isNotBlank(userId)) {
+			hql.append(" and f.user.userId = :userId");
+			params.put("userId", new Integer(userId));
+		}
+
 	}
 
 }

@@ -4,13 +4,12 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
 
-import com.zm.common.action.face.IProcessBase;
 import com.zm.common.exception.ZmException;
 import com.zm.common.face.BaseResponse;
 import com.zm.mw.mwinterface.request.UiInfoRequest;
 import com.zm.mw.mwinterface.response.UiInfoResponse;
 @Service(value = UiInfoRequest.CODE)
-public class ProcessUiInfo extends IProcessBase {
+public class ProcessUiInfo extends BaseProcess {
 
 	@Override
 	public BaseResponse useProcess(String data, HttpServletRequest request)

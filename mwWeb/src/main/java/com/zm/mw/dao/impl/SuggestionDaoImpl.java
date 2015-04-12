@@ -22,7 +22,7 @@ public class SuggestionDaoImpl extends BaseDaoImpl<Suggestion> implements
 	public Long searchSuggestionCount(BasePagination<Suggestion> page) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		StringBuilder hql = new StringBuilder("select count(*)");
-		searchSuggestion(hql, params, page);
+		searchSuggestionBase(hql, params, page);
 		return this.count(hql.toString(), params);
 	}
 
@@ -30,13 +30,13 @@ public class SuggestionDaoImpl extends BaseDaoImpl<Suggestion> implements
 	public List<Suggestion> searchSuggestion(BasePagination<Suggestion> page) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		StringBuilder hql = new StringBuilder("select s");
-		searchSuggestion(hql, params, page);
+		searchSuggestionBase(hql, params, page);
 		this.appendSort(hql, "s", page);
 		return this.find(hql.toString(), params, page.getCurrentPage(),
 				page.getLimit());
 	}
 
-	private void searchSuggestion(StringBuilder hql,
+	private void searchSuggestionBase(StringBuilder hql,
 			Map<String, Object> params, BasePagination<Suggestion> page) {
 		hql.append(" from Suggestion s");
 		hql.append(" where 1=1");

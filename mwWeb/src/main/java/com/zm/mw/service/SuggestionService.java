@@ -6,5 +6,5 @@ import com.zm.mw.entity.Suggestion;
 
 public interface SuggestionService {
 	public void searchSuggestion(BasePagination<Suggestion> page) throws ZmException;
-	public void readSuggestion(Integer suggestionId) throws ZmException;
+	public void saveReadSuggestion(Integer suggestionId) throws ZmException;
 }

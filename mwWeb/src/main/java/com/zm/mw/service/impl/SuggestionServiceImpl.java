@@ -33,7 +33,7 @@ public class SuggestionServiceImpl implements SuggestionService {
 	}
 
 	@Override
-	public void readSuggestion(Integer suggestionId) throws ZmException {
+	public void saveReadSuggestion(Integer suggestionId) throws ZmException {
 		Suggestion suggestion = suggestionDao.get(suggestionId);
 		if(null!=suggestion){
 			suggestion.setReaded(Suggestion.READED_YES);

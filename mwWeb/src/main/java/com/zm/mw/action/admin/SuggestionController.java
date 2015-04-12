@@ -32,7 +32,7 @@ public class SuggestionController extends BaseAdminController {
 			throws ZmException {
 		CommonJson result = new CommonJson();
 		try {
-			suggestionService.readSuggestion(suggestionId);
+			suggestionService.saveReadSuggestion(suggestionId);
 		} catch (ZmException e) {
 			result.setCode("false");
 			result.setMessage(e.getMessage());

@@ -10,7 +10,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.zm.common.action.face.IProcessBase;
 import com.zm.common.exception.ZmException;
 import com.zm.common.face.BaseResponse;
 import com.zm.mw.entity.UiCategory;
@@ -20,7 +19,7 @@ import com.zm.mw.mwinterface.response.UiCategoryResponse.IUiCategory;
 import com.zm.mw.service.UiCategoryService;
 import com.zm.user.service.UserService;
 @Service(value=UiCategoryRequest.CODE)
-public class ProcessUiCategory extends IProcessBase {
+public class ProcessUiCategory extends BaseProcess {
 	protected static Logger logger = LoggerFactory
 			.getLogger(ProcessUiCategory.class);
 	@Autowired

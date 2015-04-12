@@ -16,7 +16,7 @@ public class LoginTest extends  TestCase{
 	public void testLogin() throws IOException {
 		LoginRequest request = new LoginRequest();		
 		request.setType((short)1);
-		request.setCode("CODE123");
+		request.setCode("C2");
 		LoginResponse response = new HttpExcute().execute(request);
 		System.out.println(new Gson().toJson(response));
 	}
