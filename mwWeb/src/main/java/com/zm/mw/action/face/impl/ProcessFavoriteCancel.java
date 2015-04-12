@@ -38,7 +38,7 @@ public class ProcessFavoriteCancel extends BaseProcess {
 		}
 		List<Favorite> hased = favoriteDao.findByUserIdUiId(
 				currentUser.getUserId(), ui.getUiId());
-		if (null != hased) {
+		if (null != hased&&hased.size()>0) {
 			for (Favorite favorite : hased) {
 				favoriteDao.delete(favorite);
 			}

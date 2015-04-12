@@ -1,8 +1,11 @@
 package com.zm.mw.mwinterface.response;
 
 import com.zm.common.face.BaseResponse;
+import com.zm.mw.mwinterface.request.UiInfoRequest;
 
 public class UiInfoResponse extends BaseResponse {
+	public static String CODE_NULL_UIId = UiInfoRequest.CODE + "01";
+	
 	private Integer uiId;//ui的系统id，用于显示详情或者收藏的时候使用
 	private String productName;//产品名称，第一个名称	
 	private String pageName;//产品名称，第一个名称

@@ -72,11 +72,20 @@ public class FavoriteDaoImpl extends BaseDaoImpl<Favorite> implements
 		hql.append(" from Favorite f");
 		hql.append(" where 1=1");
 		String userId = null;
+		if(null != page && null != page.getParams()){
+			userId = page.getParams().get("userId");
+		}
 		if (StringUtils.isNotBlank(userId)) {
 			hql.append(" and f.user.userId = :userId");
 			params.put("userId", new Integer(userId));
 		}
 
+	}
+
+	@Override
+	public Long findCount() {
+		String hql = "select count(*) from Favorite f";
+		return this.count(hql);
 	}
 
 }

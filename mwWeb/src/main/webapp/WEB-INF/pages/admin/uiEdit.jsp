@@ -25,6 +25,8 @@ request.setAttribute("sources", Ui.SOURCES);
 		<form class="form-horizontal well" id="editForm"
 			action="${_ctxPath}/admin/uiEditSave.htm" method="post">
 			<input type="hidden" name="uiId" value="${ui.uiId}"/>
+			<input type="hidden" name="source" value="${ui.source}"/>
+			<input type="hidden" name="user.userId" value="${ui.user.userId}"/>
 			<div class="row">
 				<div class="control-group span16">
 					<label class="control-label">产品名称：</label>
