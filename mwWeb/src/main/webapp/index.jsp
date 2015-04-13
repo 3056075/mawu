@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<% response.sendRedirect("/admin/index.htm"); %>
+<% response.sendRedirect("/index.htm"); %>
 </body>
 
 </html>
