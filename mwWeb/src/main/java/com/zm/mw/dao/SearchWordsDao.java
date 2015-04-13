@@ -9,4 +9,7 @@ import com.zm.mw.entity.SearchWords;
 public interface SearchWordsDao extends BaseDao<SearchWords>{
 	public Long searchSearchWordsCount(BasePagination<SearchWords> page);
 	public List<SearchWords> searchSearchWords(BasePagination<SearchWords> page);
+	
+	public SearchWords getByWord(String word);
+	public SearchWords getByUiCategoryId(Integer uiCategoryId);
 }
