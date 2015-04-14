@@ -60,4 +60,19 @@ public class SearchWordsDaoImpl extends BaseDaoImpl<SearchWords> implements
 		}
 	}
 
+	@Override
+	public SearchWords getByWord(String word) {
+		String hql = "select s from SearchWords s where s.word=? and s.type="
+				+ SearchWords.TYPE_WORD;
+		List<SearchWords> result = this.find(hql, word);
+		return result != null && result.size() > 0 ? result.get(0) : null;
+	}
+
+	@Override
+	public SearchWords getByUiCategoryId(Integer uiCategoryId) {
+		String hql="select s from SearchWords s where s.uiCategoryId=? and s.type="+SearchWords.TYPE_UICATEGORY;
+		List<SearchWords> result = this.find(hql, uiCategoryId);
+		return result != null && result.size() > 0 ? result.get(0) : null;
+	}
+
 }
