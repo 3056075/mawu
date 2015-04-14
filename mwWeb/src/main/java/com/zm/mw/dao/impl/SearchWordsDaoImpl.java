@@ -70,7 +70,7 @@ public class SearchWordsDaoImpl extends BaseDaoImpl<SearchWords> implements
 
 	@Override
 	public SearchWords getByUiCategoryId(Integer uiCategoryId) {
-		String hql="select s from SearchWords s where s.uiCategoryId=? and s.type="+SearchWords.TYPE_UICATEGORY;
+		String hql="select s from SearchWords s where s.uiCategory.uiCategoryId=? and s.type="+SearchWords.TYPE_UICATEGORY;
 		List<SearchWords> result = this.find(hql, uiCategoryId);
 		return result != null && result.size() > 0 ? result.get(0) : null;
 	}

@@ -46,7 +46,8 @@ public class UiTest extends TestCase {
 	@Test
 	public void testSearch() throws IOException {
 		UiSearchRequest request = new UiSearchRequest();
-		request.setKeywords("产");;
+//		request.setKeywords("产");
+		request.setCategoryId(15);
 		UiSearchResponse response = new HttpExcute().execute(request);
 		System.out.println(new Gson().toJson(response));
 	}

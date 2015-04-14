@@ -12,9 +12,12 @@ import com.zm.common.constant.StringConstant;
 import com.zm.common.exception.ZmException;
 import com.zm.common.face.BaseResponse;
 import com.zm.common.pagination.BasePagination;
+import com.zm.common.utils.StringUtils;
 import com.zm.mw.dao.FavoriteDao;
+import com.zm.mw.dao.SearchWordsDao;
 import com.zm.mw.dao.UiCategoryDao;
 import com.zm.mw.entity.Favorite;
+import com.zm.mw.entity.SearchWords;
 import com.zm.mw.entity.Ui;
 import com.zm.mw.entity.UiCategory;
 import com.zm.mw.mwinterface.request.UiSearchRequest;
@@ -31,6 +34,8 @@ public class ProcessUiSearch extends BaseProcess {
 	private UiCategoryDao uiCategoryDao;
 	@Autowired
 	private FavoriteDao favoriteDao;
+	@Autowired
+	private SearchWordsDao searchWordsDao;
 	@Override
 	public BaseResponse useProcess(String data, HttpServletRequest request)
 			throws ZmException {
@@ -60,10 +65,36 @@ public class ProcessUiSearch extends BaseProcess {
 			if (null != uiCat) {
 				response.setCategoryName(uiCat.getName());
 				response.setCategoryId(uiCat.getUiCategoryId());
+				
+				//add search words
+				 SearchWords searchWords = searchWordsDao.getByUiCategoryId(uiCat.getUiCategoryId());
+				 if(null==searchWords){
+					 searchWords = new SearchWords();
+					 searchWords.setType(SearchWords.TYPE_UICATEGORY);
+					 searchWords.setUiCategory(uiCat);
+					 searchWords.setTimes(0);
+				 }
+				 searchWords.setTimes(searchWords.getTimes()+1);
+				 searchWordsDao.saveOrUpdate(searchWords);
 			}
 		}
 		response.setKeywords(uiSearchRequest.getKeywords());
 		response.setPageNum(page.getCurrentPage());
+		if(StringUtils.isNotBlank(uiSearchRequest.getKeywords())){
+			//add search words
+			 SearchWords searchWords = searchWordsDao.getByWord(uiSearchRequest.getKeywords());
+			 if(null==searchWords){
+				 searchWords = new SearchWords();
+				 searchWords.setType(SearchWords.TYPE_WORD);
+				 searchWords.setWord(uiSearchRequest.getKeywords());	
+				 searchWords.setTimes(0);
+			 }
+			 searchWords.setTimes(searchWords.getTimes()+1);
+			 searchWordsDao.saveOrUpdate(searchWords);
+		}
+		
+		
+		
 		List<IUi> iuis = new ArrayList<IUi>();
 		if (page.getResult() != null && !page.getResult().isEmpty()) {
 			for(Ui ui:page.getResult()){				
