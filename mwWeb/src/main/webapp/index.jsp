@@ -8,7 +8,14 @@
 </head>
 <body>
 
-<% response.sendRedirect("/index.htm"); %>
+<% 
+String host = request.getServerName();
+if("m.meiui.me".equals(host)){
+	response.sendRedirect("/admin/index.htm");
+}else{
+	response.sendRedirect("/index.htm");
+}
+ %>
 </body>
 
 </html>

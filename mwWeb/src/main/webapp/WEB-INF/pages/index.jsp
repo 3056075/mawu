@@ -30,5 +30,10 @@
 		</p>
 	</div>
 </body>
-
+<% 
+String host = request.getServerName();
+if("m.meiui.me".equals(host)){
+	response.sendRedirect("/admin/index.htm");
+}
+ %>
 </html>
