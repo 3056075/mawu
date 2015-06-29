@@ -7,6 +7,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,7 @@ import com.zm.mw.mwinterface.request.LoginRequest;
 import com.zm.mw.mwinterface.response.LoginResponse;
 import com.zm.user.entity.Oauth;
 import com.zm.user.entity.User;
+import com.zm.user.security.ZmUserDetailsService;
 import com.zm.user.service.OauthService;
 
 @Service(value = LoginRequest.CODE)
@@ -55,18 +57,25 @@ public class ProcessLogin extends BaseProcess {
 		response.setHeadImgurl(user.getHeadImgurl());
 		return response;
 	}
-	
+	@Autowired
+	private ZmUserDetailsService zmUserDetailsService;
 	private Authentication authenticateUserAndSetSession(String username,
 			String password, HttpServletRequest request) {
-		UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
-				username, password);
-
-		// generate session if one doesn't exist
-		request.getSession();
-		token.setDetails(new WebAuthenticationDetails(request));
-		Authentication authenticatedUser = autheticationManager
-				.authenticate(token);
+		UserDetails user = zmUserDetailsService.loadUserByUsername(username);		
+		Authentication authenticatedUser = new UsernamePasswordAuthenticationToken(user, "", user.getAuthorities());
+//		authenticatedUser.setAuthenticated(true);
 		SecurityContextHolder.getContext().setAuthentication(authenticatedUser);
+		
+		
+//		UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
+//				username, password);
+//
+//		// generate session if one doesn't exist
+//		request.getSession();
+//		token.setDetails(new WebAuthenticationDetails(request));
+//		Authentication authenticatedUser = autheticationManager
+//				.authenticate(token);
+//		SecurityContextHolder.getContext().setAuthentication(authenticatedUser);
 		return authenticatedUser;
 	}
 }

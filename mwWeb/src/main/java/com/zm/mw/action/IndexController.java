@@ -57,7 +57,7 @@ public class IndexController extends BaseController {
 	public String autoLogin(HttpServletRequest request) {
 		UserDetails user = zmUserDetailsService.loadUserByUsername("admin");		
 		Authentication authenticatedUser = new UsernamePasswordAuthenticationToken(user, "", user.getAuthorities());
-		authenticatedUser.setAuthenticated(true);
+//		authenticatedUser.setAuthenticated(true);
 		SecurityContextHolder.getContext().setAuthentication(authenticatedUser);
 		return "index";
 	}
